@@ -9,6 +9,8 @@ namespace Walks.API.Profiles
         public RegionProfile()
         {
             CreateMap<Region, RegionDto>().ReverseMap();
+            CreateMap<Region, AddRegionRequest>().ReverseMap();
+            CreateMap<Region, UpdateRegionRequest>().ReverseMap();
         }
     }
 }
