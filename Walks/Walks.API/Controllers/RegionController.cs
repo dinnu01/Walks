@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Walks.API.Models.Domains;
 using Walks.API.Models.DTOs;
@@ -8,6 +9,7 @@ namespace Walks.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    
     public class RegionController : Controller
     {
         private readonly IRegionRepository _regionRepository;
@@ -17,7 +19,10 @@ namespace Walks.API.Controllers
             _regionRepository = regionRepository;
             _mapper = mapper;
         }
+        
+        
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAllRegionsAsync()
         {
             return Ok(_mapper.Map<List<RegionDto>>(await _regionRepository.GetAllAsync()));
